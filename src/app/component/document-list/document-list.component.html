@@ -1,6 +1,6 @@
 <h2 [routerLink]="['/']">Korona wiki</h2>
-<input placeholder="Wisła Kraków">
-<button>Szukaj</button>
+<input #search placeholder="Wisła Kraków">
+<button (click)="onSearch(search.value)">Szukaj</button>
 <button>Filtruj</button>
 
 <div *ngIf="documents$ | async as documents">
