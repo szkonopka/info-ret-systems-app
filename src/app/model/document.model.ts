@@ -3,8 +3,3 @@ export type Document = Readonly<{
   title: string,
   text: string
 }>;
-
-export type User = Readonly<{
-  login: string,
-  password: string
-}>;

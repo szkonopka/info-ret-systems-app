@@ -1,4 +1,10 @@
-<button [routerLink]="['/login']">Zaloguj</button>
+<div *ngIf="userLoginStatus$ | async as userLoginStatus">
+  <button [routerLink]="['/login']" *ngIf="!userLoginStatus.logged; else userLogged">Zaloguj</button>
+  <ng-template #userLogged>
+    <button (click)="onLogout()">Wyloguj</button>
+    <button [routerLink]="['/document/add']">Dodaj dokument</button>
+  </ng-template>
+</div>
 <h2>Korona Wiki</h2>
-<input #searchInput type="text">
-<button (click)="onSearch(searchInput.value)">Search</button>
+<input #searchInput type="text" placeholder="Szukaj">
+<button (click)="onSearch(searchInput.value)">Szukaj</button>

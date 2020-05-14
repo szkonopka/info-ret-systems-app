@@ -1,4 +1,4 @@
-<h2>Korona Wiki</h2>
-<input placeholder="Login">
-<input placeholder="Hasło" type="password">
-<button>Zaloguj</button>
+<h2 [routerLink]="['/']">Korona Wiki</h2>
+<input #login placeholder="Login">
+<input #password placeholder="Hasło" type="password">
+<button (click)="onLoginAttempt(login.value, password.value)">Zaloguj</button>

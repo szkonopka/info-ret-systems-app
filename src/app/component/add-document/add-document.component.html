@@ -1,1 +1,5 @@
-<p>add-document works!</p>
+<h2 [routerLink]="['/']">Korona Wiki</h2>
+<input [(ngModel)]="title" placeholder="Tytuł">
+<input [(ngModel)]="text" placeholder="Treść">
+<button (click)="onClear()">Wyczyść</button>
+<button (click)="onAddDocument()">Dodaj</button>

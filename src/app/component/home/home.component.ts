@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { LoginStatus } from '../../model/user.model';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-home',
@@ -8,16 +11,24 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) {
+  userLoginStatus$: Observable<LoginStatus>;
+
+  constructor(private router: Router,
+              private loginService: LoginService) {
   }
 
   ngOnInit(): void {
+    this.userLoginStatus$ = this.loginService.logged;
   }
 
   onSearch(phrase: string): void {
     if (phrase.trim()) {
       this.router.navigate(['search'], {queryParams: {phrase}});
     }
+  }
+
+  onLogout(): void {
+    this.loginService.logout();
   }
 
 }

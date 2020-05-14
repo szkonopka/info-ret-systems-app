@@ -4,6 +4,7 @@ import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { DocumentListComponent } from './component/document-list/document-list.component';
 import { DocumentComponent } from './component/document/document.component';
+import { AddDocumentComponent } from './component/add-document/add-document.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,9 @@ const routes: Routes = [
   },
   {
     path: 'search', component: DocumentListComponent
+  },
+  {
+    path: 'document/add', component: AddDocumentComponent
   },
   {
     path: 'document/:id', component: DocumentComponent
