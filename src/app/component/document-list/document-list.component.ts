@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SearchEngineService } from '../../service/search-engine.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { mapTo, startWith, map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-document-list',
@@ -11,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DocumentListComponent implements OnInit {
 
   documents$: Observable<Document[]>;
+  engineConnected$: Observable<boolean>;
 
   constructor(private searchEngineService: SearchEngineService,
               private route: ActivatedRoute,
@@ -21,6 +23,12 @@ export class DocumentListComponent implements OnInit {
     this.route.queryParams.subscribe(({phrase}) => {
       this.documents$ = this.searchEngineService.searchDocument(phrase);
     });
+
+    this.engineConnected$ = this.searchEngineService.isAvailable()
+      .pipe(
+        map(() => true),
+        startWith(false)
+      )
   }
 
   onSearch(phrase: string): void {
