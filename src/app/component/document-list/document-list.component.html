@@ -1,7 +1,7 @@
 <div class="container">
   <div class="page column flex__centered">
     <div class="row flex__centered">
-      <p>Engine connection: {{engineConnected$ | async}}</p>
+      <p>Engine connection <span class="active-info-btn">{{engineConnected$ | async}}</span></p>
     </div>
     <div class="row flex__centered">
       <h2 class="redirection-header" id="logo" [routerLink]="['/']">Korona wiki</h2>

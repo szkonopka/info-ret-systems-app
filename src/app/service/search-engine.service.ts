@@ -26,7 +26,7 @@ export class SearchEngineService {
     }
   }
 
-  getAllDocuments(_query, _index?, _type?): Observable<any> {
+  getAllDocuments(_query: string, _index: string, _type?): Observable<any> {
     return from(this.client.search({
       q: _query,
       index: _index,
@@ -35,7 +35,7 @@ export class SearchEngineService {
     }));
   }
 
-  getPaginatedDocuments(_query, _page, _index?, _type?): Observable<any> {
+  getPaginatedDocuments(_query: string, _page: number, _index?, _type?): Observable<any> {
     return from(this.client.search({
       q: _query,
       type: _type,
@@ -44,14 +44,14 @@ export class SearchEngineService {
     }));
   }
 
-  getNextPage(scrollId): any {
+  getNextPage(_scrollId: number): any {
     return this.client.scroll({
-      scrollId: scrollId,
+      scrollId: _scrollId,
       scroll: '1m'
     })
   }
 
-  getDocument(_id, _index, _type?): Observable<any> {
+  getDocument(_id: number, _index: string, _type?): Observable<any> {
     return from(this.client.get({
       index: _index,
       type: _type,
@@ -63,8 +63,16 @@ export class SearchEngineService {
     return this.http.get<Document[]>('./assets/documents.json');
   }
 
-  addDocument(title: string, text: string): void {
-    // to be implemented
+  addDocument(_index: string, _title: string, _text: string, _type?, _id?): Observable<any> {
+    return from(this.client.create({
+      index: _index,
+      type: _type,
+      id: _id,
+      body: {
+        title: _title, 
+        text: _text
+      }
+    }));
   }
 
   isAvailable(): Observable<any> {
@@ -77,7 +85,7 @@ export class SearchEngineService {
   private _connect() {
     this.client = new Client({
       host: 'http://localhost:9200',
-      //log: 'trace'
+      log: 'trace'
     });
   }
 }

@@ -1,5 +1,15 @@
-<h2 [routerLink]="['/']">Korona Wiki</h2>
-<input [(ngModel)]="title" placeholder="Tytuł">
-<input [(ngModel)]="text" placeholder="Treść">
-<button (click)="onClear()">Wyczyść</button>
-<button (click)="onAddDocument()">Dodaj</button>
+<div class="container">
+    <div class="page column flex__centered">
+        <div class="row flex__centered">
+            <h2 class="redirection-header" id="logo" [routerLink]="['/']">Korona Wiki</h2>
+        </div>
+        <div class="column flex__centered">
+        <input [(ngModel)]="title" placeholder="Tytuł">
+        <input [(ngModel)]="text" placeholder="Treść">
+        <div class="row flex__centered">
+        <button class="action-btn" (click)="onClear()">Wyczyść</button>
+        <button class="action-btn" (click)="onAddDocument()">Dodaj</button>
+        </div>
+        </div>
+    </div>
+</div>
