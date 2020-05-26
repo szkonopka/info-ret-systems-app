@@ -1,6 +1,10 @@
-<h2 [routerLink]="['/']">Wisła kraków</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-  aliqua.
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<div class="container article" *ngIf="document$ | async as document">
+  <div class="column flex__centered">
+    <div class="row flex__left">
+      <h2 class="redirection-header" [routerLink]="['/']">{{document.title}}</h2>
+    </div>
+    <div class="row flex__left">
+      <p>{{document.text}}</p>
+    </div>
+  </div>
+</div>

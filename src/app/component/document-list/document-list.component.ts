@@ -25,7 +25,9 @@ export class DocumentListComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(({phrase}) => {
       this.documents$ = this.searchEngineService.getPaginatedDocuments(phrase, 1, this.INDEX_NAME).pipe(
-          tap(r => r.hits.hits.map(x => console.log(x._source))),
+          tap(esData => { 
+            esData.hits.hits.length <= 0 ? alert('Nie znaleziono żadnych wyników wyszukiwania') : null
+          }),
           map(esData => esData.hits.hits.map(document => document._source as Document)))
         }
       );
@@ -35,6 +37,10 @@ export class DocumentListComponent implements OnInit {
         map(() => true),
         startWith(false)
       )
+  }
+
+  showDocument(id): void {
+    this.router.navigate(['document/' + id], {queryParams: {id}})
   }
 
   onSearch(phrase: string): void {

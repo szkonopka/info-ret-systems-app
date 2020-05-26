@@ -4,7 +4,7 @@
       <p>Engine connection: {{engineConnected$ | async}}</p>
     </div>
     <div class="row flex__centered">
-      <h2 id="logo" [routerLink]="['/']">Korona wiki</h2>
+      <h2 class="redirection-header" id="logo" [routerLink]="['/']">Korona wiki</h2>
     </div>
     <div class="row flex__centered">
       <input #search placeholder="Wisła Kraków">
@@ -13,8 +13,8 @@
     </div>
     <div *ngIf="documents$ | async as documents">
       <div class="column flex__centered" *ngFor="let document of documents">
-        <h3 [routerLink]="['/document', document.id]">{{document.title}}</h3>
-        <p>{{document.text}}</p>
+        <h3 class="redirection-header" (click)="showDocument(document.id)">{{document.title}}</h3>
+        <p>{{document.text | slice:0:100}}</p>
       </div>
     </div>
     <div>

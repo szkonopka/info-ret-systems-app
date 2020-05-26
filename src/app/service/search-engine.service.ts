@@ -51,6 +51,14 @@ export class SearchEngineService {
     })
   }
 
+  getDocument(_id, _index, _type?): Observable<any> {
+    return from(this.client.get({
+      index: _index,
+      type: _type,
+      id: _id
+    }));
+  }
+
   searchDocument(phrase: string): Observable<Document[]> {
     return this.http.get<Document[]>('./assets/documents.json');
   }
