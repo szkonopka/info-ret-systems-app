@@ -1,13 +1,22 @@
-<p>Engine connection: {{engineConnected$ | async}}</p>
-<h2 [routerLink]="['/']">Korona wiki</h2>
-<input #search placeholder="Wisła Kraków">
-<button (click)="onSearch(search.value)">Szukaj</button>
-<button>Filtruj</button>
-
-<div *ngIf="documents$ | async as documents">
-  <div *ngFor="let document of documents">
-    <h3 [routerLink]="['/document', document.id]">{{document.title}}</h3>
-    <p>{{document.text}}</p>
+<div class="container">
+  <div class="page column flex__centered">
+    <div class="row flex__centered">
+      <p>Engine connection: {{engineConnected$ | async}}</p>
+    </div>
+    <div class="row flex__centered">
+      <h2 id="logo" [routerLink]="['/']">Korona wiki</h2>
+    </div>
+    <div class="row flex__centered">
+      <input #search placeholder="Wisła Kraków">
+      <button class="action-btn" (click)="onSearch(search.value)">Szukaj</button>
+      <button class="action-btn">Filtruj</button>
+    </div>
+    <div *ngIf="documents$ | async as documents">
+      <div class="column flex__centered" *ngFor="let document of documents">
+        <h3 [routerLink]="['/document', document.id]">{{document.title}}</h3>
+        <p>{{document.text}}</p>
+      </div>
+    </div>
+    <div>
   </div>
 </div>
-<div>

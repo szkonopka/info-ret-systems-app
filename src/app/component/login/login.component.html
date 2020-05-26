@@ -1,4 +1,17 @@
-<h2 [routerLink]="['/']">Korona Wiki</h2>
-<input #login placeholder="Login">
-<input #password placeholder="Hasło" type="password">
-<button (click)="onLoginAttempt(login.value, password.value)">Zaloguj</button>
+<div class="container">
+    <div class="page column flex__centered">
+        <div class="row flex__centered">
+            <h2 [routerLink]="['/']">Korona Wiki</h2>
+        </div>
+        <div class="row flex__centered">
+            <input #login placeholder="Login">
+        </div>
+        <div class="row flex__centered">
+            <input #password placeholder="Hasło" type="password">
+        </div>
+        <div class="row flex__centered">
+            <button class="action-btn" (click)="onLoginAttempt(login.value, password.value)">Zaloguj</button>
+        </div>
+    </div>
+</div>
+

@@ -1,1 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&effect=anaglyph&display=swap')
+
+body
+    margin: 0
+    font-family: 'Roboto', sans-serif
+
+.row
+    display: flex
+    flex-direction: row
+    align-content: flex-start
+
+.column
+    display: flex
+    flex-direction: column
+    align-content: flex-start
+
+.flex__centered
+    justify-content: center
+
+.container
+    display: flex
+    flex-wrap: nowrap
+    align-items: center
+    justify-content: center
+    align-items: center
+    align-self: center
+
+.page
+    box-sizing: border-box
+    padding: 48px 25em
+    min-height: 100vh
+    min-width: 100vw
+    position: relative
+
+.action-btn 
+    background: #F4324A
+    display: inline-block
+    height: auto
+    display: inline-block
+    margin: 25px
+    height: 35px
+    border-radius: 3px
+    cursor: pointer
+    border: none
+    color: white
+    font-family: 'Nunito', sans-serif!important
+    font-weight: 800
+    padding: 0 2em
+    transition: background 250ms ease-in-out, transform 150ms ease
+    -webkit-appearance: none
+    -moz-appearance: none
+    text-transform: uppercase
+    font-size: 0.7em
+    letter-spacing: 0.1em
+
+.action-btn:hover,
+.action-btn:focus
+    background: #d3491f
+
+.action-btn:focus
+    outline: none
+
+.action-btn:active 
+    transform: scale(0.99)
+
+input
+    padding: 0.5em 1em
+    flex-grow: 1
+    border-radius: 0.5em
+    background: white
+    display: block
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)
+    color: #1f1f1f
+    font-size: 400
+    border: 1px solid transparent
+    width: 100%
+    box-sizing: border-box
+    margin: 16px 0
+
+input:focus,
+input:active
+    outline: none
+    box-shadow: 0 5px 15px #F4324A
+
+#logo
+    font-family: 'Chelsea Market', cursive
+
+    

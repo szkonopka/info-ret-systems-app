@@ -1,10 +1,18 @@
-<div *ngIf="userLoginStatus$ | async as userLoginStatus">
-  <button [routerLink]="['/login']" *ngIf="!userLoginStatus.logged; else userLogged">Zaloguj</button>
-  <ng-template #userLogged>
-    <button (click)="onLogout()">Wyloguj</button>
-    <button [routerLink]="['/document/add']">Dodaj dokument</button>
-  </ng-template>
+<div class="container">
+  <div class="page column flex__centered">
+    <div class="row flex__centered" *ngIf="userLoginStatus$ | async as userLoginStatus">
+      <button [routerLink]="['/login']" class="action-btn" *ngIf="!userLoginStatus.logged; else userLogged">Zaloguj</button>
+      <ng-template #userLogged>
+        <button class="action-btn" (click)="onLogout()">Wyloguj</button>
+        <button class="action-btn" [routerLink]="['/document/add']">Dodaj dokument</button>
+      </ng-template>
+    </div>
+    <div class="row flex__centered">
+      <h2 class="font-effect-anaglyph" id="logo">Korona Wiki</h2>
+    </div>
+    <div class="row flex__centered">
+      <input #searchInput type="text" placeholder="Szukaj">
+      <button class="action-btn" (click)="onSearch(searchInput.value)">Szukaj</button>
+    </div>
+  </div>
 </div>
-<h2>Korona Wiki</h2>
-<input #searchInput type="text" placeholder="Szukaj">
-<button (click)="onSearch(searchInput.value)">Szukaj</button>

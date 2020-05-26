@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SearchEngineService } from '../../service/search-engine.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { mapTo, startWith, map } from 'rxjs/operators'
+import { mapTo, startWith, map, mergeMap, filter, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-document-list',
@@ -10,9 +10,12 @@ import { mapTo, startWith, map } from 'rxjs/operators'
   styleUrls: ['./document-list.component.sass']
 })
 export class DocumentListComponent implements OnInit {
+  private readonly INDEX_NAME = 'plwiki-20200301';
 
   documents$: Observable<Document[]>;
   engineConnected$: Observable<boolean>;
+
+  private esData: any[];
 
   constructor(private searchEngineService: SearchEngineService,
               private route: ActivatedRoute,
@@ -21,8 +24,11 @@ export class DocumentListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(({phrase}) => {
-      this.documents$ = this.searchEngineService.searchDocument(phrase);
-    });
+      this.documents$ = this.searchEngineService.getPaginatedDocuments(phrase, 1, this.INDEX_NAME).pipe(
+          tap(r => r.hits.hits.map(x => console.log(x._source))),
+          map(esData => esData.hits.hits.map(document => document._source as Document)))
+        }
+      );
 
     this.engineConnected$ = this.searchEngineService.isAvailable()
       .pipe(
