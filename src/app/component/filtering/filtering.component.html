@@ -1,0 +1,16 @@
+<div>
+    <ul class="row">
+        <li>
+            <label for="date">Dodano </label>
+            <select (change)="onChange($event.target.value)" [(ngModel)]="selectedDate">
+                <option *ngFor="let d of dates" [ngValue]="d.id">{{d.name}}</option>
+            </select>
+        </li>
+        <li>
+            <label for="search">Szukaj </label>
+            <select (change)="onChange($event.target.value)" [(ngModel)]="selectedSearch">
+                <option *ngFor="let s of searches" [ngValue]="s.id">{{s.name}}</option>
+            </select>
+        </li>
+    </ul>
+</div>

@@ -11,10 +11,11 @@
       <button class="action-btn" (click)="onSearch(search.value)">Szukaj</button>
       <button class="action-btn">Filtruj</button>
     </div>
+    <app-filtering></app-filtering>
     <div *ngIf="documents$ | async as documents">
       <div class="column flex__centered" *ngFor="let document of documents">
         <h3 class="redirection-header" (click)="showDocument(document.id)">{{document.title}}</h3>
-        <p>{{document.text | slice:0:100}}</p>
+        <p>{{ this.showShortText(document.text.toString()) }}</p>
       </div>
     </div>
     <div>

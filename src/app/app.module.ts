@@ -11,6 +11,7 @@ import { AddDocumentComponent } from './component/add-document/add-document.comp
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FilteringComponent } from './component/filtering/filtering.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     DocumentListComponent,
     DocumentComponent,
-    AddDocumentComponent
+    AddDocumentComponent,
+    FilteringComponent
   ],
   imports: [
     BrowserModule,

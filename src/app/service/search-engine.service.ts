@@ -26,6 +26,27 @@ export class SearchEngineService {
     }
   }
 
+  parseSearchOptions(phrase, fieldToQuery) {
+    if (fieldToQuery == 'text' || fieldToQuery == 'title')
+      return fieldToQuery + ':"' + phrase + '"';
+    return phrase;
+  }
+
+  parseDateOptions(dateToQuery) {
+    if (dateToQuery == '24h')
+      return ''
+    else if (dateToQuery == 'week') 
+    return ''
+    else if (dateToQuery == 'moth') 
+      return '' 
+    else if (dateToQuery == 'halfyear') 
+      return ''
+    else if (dateToQuery == 'year') 
+      return ''
+    
+    return ''
+  }
+
   getAllDocuments(_query: string, _index: string, _type?): Observable<any> {
     return from(this.client.search({
       q: _query,
@@ -35,9 +56,9 @@ export class SearchEngineService {
     }));
   }
 
-  getPaginatedDocuments(_query: string, _page: number, _index?, _type?): Observable<any> {
+  getPaginatedDocuments(dateToQuery: string, fieldToQuery: string, _query: string, _page: number, _index?, _type?): Observable<any> {
     return from(this.client.search({
-      q: _query,
+      q: this.parseSearchOptions(_query, fieldToQuery),
       type: _type,
       from: (_page - 1) * this.PER_PAGE,
       size: this.PER_PAGE
